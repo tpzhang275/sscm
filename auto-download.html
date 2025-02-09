@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function detectPlatform() {
+  const ua = navigator.userAgent;
+  if (/android/i.test(ua)) {
+    window.location.href = "https://static.dhsf.huiyuehz.com/Package/promote/206316_121104_20250205012953NYSoTU.apk";
+  } else if (/iphone|ipad|ipod/i.test(ua)) {
+    window.location.href = "itms-services://?action=download-manifest&url=app.plist";
+  } else {
+    document.getElementById("manual").style.display = "block";
+  }
+}
+</script>
+</head>
+<body onload="detectPlatform()">
+  <div id="manual" style="display:none">
+    <p>请手动选择下载：</p>
+    <p><a href="https://static.dhsf.huiyuehz.com/Package/promote/206316_121104_20250205012953NYSoTU.apk">Android 下载</a></p>
+    <p><a href="itms-services://?action=download-manifest&url=app.plist">iOS 下载</a></p>
+  </div>
+</body>
+</html>
