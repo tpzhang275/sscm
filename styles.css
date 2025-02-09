@@ -1,0 +1,256 @@
+html, body {
+  overflow: hidden; /* 禁止滚动，隐藏滚动条 */
+  margin: 0;  /* 确保没有默认外边距 */
+  padding: 0; /* 确保没有默认内边距 */
+  height: 100%; /* 设置 100% 高度，占满整个屏幕 */
+  width: 100%; /* 设置 100%  宽度，占满整个屏幕 */
+}
+
+body {
+  background-image: url('bg.png'); /* 背景图片路径 */
+  background-size: cover;   /* 背景图覆盖整个页面 */
+  background-position: center; /* 背景图居中 */
+  background-attachment: fixed; /* 背景图固定，滚动页面时不动 */
+  z-index: 0; /* 背景放在最底层 */
+  position: relative; /* 确保背景层有层叠上下文 */
+  
+}
+
+@keyframes slideInFromLeft {
+  0% {
+      transform: translateX(-100%);
+      opacity: 0;
+  }
+  100% {
+      transform: translateX(0);
+      opacity: 1;
+  }
+}
+
+.left-side-image {
+  position: absolute;
+  left: 0;
+  top: 20%;
+  transform: translateY(-50%);
+  height: 15%;
+  width: 15%;
+  animation: slideInFromLeft 1.5s ease-out forwards; /* 添加 forwards 以保持动画结束状态 */
+}
+
+/* 媒体查询，用于移动端和触屏设备 */
+@media (max-width: 767px) {
+  .left-side-image {
+    display: none; /* 在屏幕宽度小于或等于767px时隐藏 */
+  }
+}
+
+/* 仅在PC端显示左侧图片 */
+@media (hover: hover) and (pointer: fine) {
+  .left-side-image {
+    display: block;
+  }
+}
+
+
+
+/* 设置logo效果 */
+.logo {
+  width: 50%;          /* 让logo宽度自适应父容器，最大宽度为80% */
+  height: auto;        /* 保持logo的宽高比 */
+  z-index: 1000;       /* logo位于最上面 */
+  object-fit: contain; /* 保证logo自适应，不变形 */
+  position: absolute;     /* 使用绝对定位 */
+  left: 50%;              /* 将logo定位到页面的50% */
+  transform: translateX(-50%); /* 将logo从50%向左偏移其自身的宽度 */
+  opacity: 0;             /* 初始时让logo不可见 */
+  animation: slideDown 1s forwards; /* 添加动画效果 */
+  cursor: pointer;       /* 鼠标悬停时显示点击效果 */
+
+  /* 给logo图像边缘添加发光效果 */
+  filter: drop-shadow(0 0 10px rgba(117, 28, 28, 0.886)) 
+          drop-shadow(0 0 20px rgba(3, 39, 37, 0.6))
+          drop-shadow(0 0 30px rgba(136, 16, 16, 0.4));
+}
+
+
+/* 3个图片下载按钮样式 */
+.download-button {
+  background-color: rgba(237, 0, 0, 0);
+  width: 150px; /* 使按钮宽度自适应内容 */
+  height: 200px; /* 保持按钮的宽高比 */
+  max-width: 100%; /* 限制按钮的最大宽度 */
+  max-height: 120px; /* 限制按钮的最大高度 */
+  display: flex;
+  justify-content: center; /* 按钮文字居中 */
+  align-items: center; /* 按钮内容居中 */
+  transition: background-color 0.3s ease, opacity 1s ease, transform 0.3s ease; /* 按钮的过渡效果 */
+  opacity: 0; /* 初始时让按钮不可见 */
+  animation: fadeIn 1.5s forwards; /* 添加淡入动画效果 */
+}
+
+/* 鼠标悬停到按钮时时改变背景色 */
+.download-button:hover {
+  background-color: rgba(162, 151, 151, 0.059);
+  transform: scale(0.8); /* 鼠标悬停时放大按钮 */
+}
+
+/* 下载按钮容器 */
+.download-buttons {
+  display: flex;
+  justify-content: space-around; /* 水平排列按钮并均匀分配空间 */
+  align-items: center; /* 垂直居中按钮 */
+  gap: 10px; /* 按钮之间的间距 */
+  position: fixed;
+  bottom: 150px; /* 固定在页面底部，距离底部一定距离 */
+  left: 50%;
+  transform: translateX(-50%); /* 水平居中容器 */
+  z-index: 1000;
+  background-color: rgba(255, 255, 255, 0); /* 半透明背景 */
+  padding: 10px; /* 增加内边距，避免按钮靠近容器边缘 */
+  width: 80%; /* 容器宽度占页面 80% */
+  max-width: 1200px; /* 最大宽度，避免在大屏幕下按钮过宽 */
+}
+
+/* 对容器中的每个按钮设置一致的大小 */
+.download-buttons .download-button {
+  flex: 1 1 calc(33.33% - 20px); /* 每个按钮占容器的三分之一并保证按钮之间的间距 */
+  margin: 0 100px; /* 设置按钮之间的间距 */
+  max-width: 180px; /* 限制每个按钮的最大宽度 */
+}
+
+/* 下载按钮的外部容器样式 */
+.download-button-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto; /* 使按钮宽度自适应内容 */
+  height: 180px; /* 保持按钮的宽高比 */
+  max-width: 250px; /* 限制按钮的最大宽度 */
+  max-height: 350px; /* 限制按钮的最大高度 */
+  border: 1px solid rgba(255, 255, 255, 0.094); /* 白色边框 */
+  background-color: rgba(128, 128, 128, 0.041); /* 透明灰色背景 */
+}
+
+/* 弹跳动画效果 */
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-10px);
+  }
+}
+
+
+
+
+
+
+/* 从上到下的入场动画效果 */
+@keyframes slideDown {
+  0% {
+    transform: translateX(-50%) translateY(-100%); /* 初始时logo位于页面上方外部 */
+    opacity: 0; /* 初始时不可见 */
+  }
+  100% {
+    transform: translateX(-50%) translateY(0);    /* 最终位置居中 */
+    opacity: 1;   /* 完全显示 */
+  }
+}
+
+/* 媒体查询 - 移动端优化 */
+@media (max-width: 768px) {
+  .logo, .download-button {
+    width: 60%;       /* 在移动端上调整logo和下载按钮的最大宽度为60% */
+  }
+}
+
+/* 媒体查询 - 极小屏幕优化 */
+@media (max-width: 480px) {
+  .logo, .download-button {
+    width: 50%;       /* 在更小的屏幕上将logo和下载按钮的最大宽度调整为50% */
+  }
+}
+
+/* 让下载按钮固定在页面底部 */
+.mobile-download {
+  display: none;
+  position: fixed;
+  bottom: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000; 
+}
+
+/* 立即下载的黄色按钮 */
+@keyframes fadeIn {
+  0% {
+    opacity: 0; /* 初始完全透明 */
+  }
+  100% {
+    opacity: 1; /* 最终完全不透明 */
+  }
+}
+
+.mobile-download {
+  position: absolute;
+  bottom: 80px; /* 距离页面底部的距离，可以根据需要调整 */
+  display: flex;
+  justify-content: center; /* 水平居中子元素（文字） */
+  width: 80%; /* 宽度设为100%，但实际应用中可能需要限制宽度 */
+  left: 50%; /* 将元素定位到页面的50% */
+  opacity: 0; /* 初始时让元素不可见 */
+  animation: fadeIn 1.5s forwards; /* 添加淡入动画效果 */
+  cursor: pointer; /* 鼠标悬停时显示点击效果 */
+  text-align: center; /* 居中文字，虽然对于flex布局不是必需的 */
+}
+
+/* 让按钮图片适应大小 */
+.mobile-download img {
+  width: 80%; /* 让图片填充按钮区域 */
+  height: auto; /* 保持图片比例 */
+  max-height: 200px; /* 限制最大高度，避免过大 */
+}
+
+/* <!-- 向下滑动查看更多提示的效果 --> */
+@keyframes fadeIn {
+  0% {
+    opacity: 0; /* 初始完全透明 */
+  }
+  100% {
+    opacity: 1; /* 最终完全不透明 */
+  }
+}
+
+/* <!-- 向下滑动查看按钮的样式位置 --> */
+.scroll-down-prompt {
+  position: absolute;
+  bottom: 10px; /* 距离页面底部的距离，可以根据需要调整 */
+  display: flex;
+  justify-content: center; /* 水平居中子元素（文字） */
+  align-items: center; /* 垂直居中子元素（文字） */
+  width: 100%; /* 宽度设为100%，但实际应用中可能需要限制宽度 */
+  left: 50%; /* 将元素定位到页面的50% */
+  transform: translateX(-50%); /* 水平居中元素 */
+  font-size: 100%; /* 字体大小，可以根据需要调整 */
+  font-weight: bold; /* 加粗文字 */
+  color: #d5d8dbcf; /* 字体颜色，可以根据需要调整透明度 */
+  opacity: 0; /* 初始时让元素不可见 */
+  animation: fadeIn 1.5s forwards; /* 添加淡入动画效果 */
+  cursor: pointer; /* 鼠标悬停时显示点击效果 */
+  text-align: center; /* 居中文字，虽然对于flex布局不是必需的 */
+}
+
+/* 仅在触摸设备上显示 */
+@media (hover: none) and (pointer: coarse) {
+  .mobile-download {
+    display: flex;
+  }
+}
+
+/* 仅在PC端显示下载按钮 */
+@media (hover: hover) and (pointer: fine) {
+  .download-buttons {
+    display: flex;
+  }
+}

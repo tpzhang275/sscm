@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>寒荒弑神沉默-官方下载</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="new-content.css">
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+
+    <div class="left-side-image">
+        <img src="f元素2.png" alt="Side Image" style="width: 100%; height: auto; position: absolute; top: 0; left: 0;">
+    </div>
+
+
+    <div class="page-content">
+        <!-- 页面1部分 -->
+        <div class="logo-container">
+            <!-- LOGO部分 -->
+            <a href="" onclick="window.location.reload(); return false;">  
+                <!-- 点击LOGO对页面进行刷新 -->
+                <img src="logo.png" alt="Website Logo" class="logo">
+            </a>
+        </div>
+
+        <div id="mobile-download" class="mobile-download">
+            <a href="#" id="download-link">
+                <img src="download_button.png" alt="立即下载" class="mobile-download-img">
+            </a>
+        </div>
+
+        <!-- 添加下载容器 -->
+        <div class="download-buttons">
+            <div class="download-button-wrapper">
+                <a href="https://static.dhsf.huiyuehz.com/Package/promote/206316_121104_20250205012953NYSoTU.apk" id="android-download">
+                    <img src="android_button1.png" alt="Android 下载" class="download-button">
+                </a>
+            </div>
+            <div class="download-button-wrapper">
+                <a href="#" id="ios-download">
+                    <img src="ios_button1.png" alt="iOS 下载" class="download-button"> 
+                    <div class="qr-code" style="display: none; position: absolute; top: -100%; left: 50%; transform: translateX(-50%);">
+                        <img src="ios_qr_code.png" alt="iOS QR Code" style="width: 200px; height: 200px;">
+                    </div>
+                </a>
+            </div>
+            <script>
+                document.getElementById('ios-download').addEventListener('mouseover', function() {
+                    this.querySelector('.qr-code').style.display = 'block';
+                });
+                document.getElementById('ios-download').addEventListener('mouseout', function() {
+                    this.querySelector('.qr-code').style.display = 'none';
+                });
+            </script>
+            <div class="download-button-wrapper">
+                <a href="https://static.dhsf.huiyuehz.com/Package/promote/206316_106724_211962_20250205012937.zip" id="win-download">
+                    <img src="win_button1.png" alt="Windows 下载" class="download-button">
+                </a>
+            </div>
+        </div>
+
+        <!-- 向下滑动查看更多提示 -->
+        <div class="scroll-down-prompt">
+            <img src="滑动浏览.png" alt="向下滑动查看更多内容">
+        </div>
+    </div>
+
+    <!-- 页面2 -->
+    <div class="new-content">
+        <h2>游戏截图</h2>
+        <div class="carousel-wrapper">
+            <div class="carousel-container">
+                <div class="carousel-track">
+                    <div class="carousel-item">
+                        <img src="screenshot1.jpg" alt="轮播图1" class="carousel-image">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="screenshot2.jpg" alt="轮播图2" class="carousel-image">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="screenshot3.jpg" alt="轮播图3" class="carousel-image">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="screenshot4.jpg" alt="轮播图4" class="carousel-image">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="screenshot5.jpg" alt="轮播图5" class="carousel-image">
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="new-content.js"></script>   
+    <script src="download.js"></script>
+    <script src="home.js"></script>
+    <script>
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+
+        // 检测设备类型并控制mobile-download的显示
+        function isMobileDevice() {
+            return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileDownload = document.getElementById('mobile-download');
+            if (!isMobileDevice()) {
+                mobileDownload.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

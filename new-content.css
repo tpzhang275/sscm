@@ -1,0 +1,187 @@
+/* 背景图设置 - 仅应用于 .new-content */
+.new-content {
+    background-image: url('bg1.png'); /* 背景图片路径 */
+    background-size: cover;   /* 背景图覆盖整个页面 */
+    background-position: center; /* 背景图居中 */
+    background-attachment: fixed; /* 背景图固定，滚动页面时不动 */
+    z-index: 0; /* 背景放在最底层 */
+    position: relative; /* 确保背景层有层叠上下文 */
+    height: 100vh; /* 确保背景图占满整个视口 */
+  }
+
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.new-content h2 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    margin-left: 40px;
+    font-size: 60px;
+    color: #beb5b5;
+    position: relative;
+    opacity: 0; 
+    transform: translateY(100%); 
+    animation: fadeInUp 2s ease-in-out forwards; 
+}
+
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+    min-width: 100%;
+    height: 100%;
+}
+
+
+
+/* 页面内容布局 */
+.page-content {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    transition: opacity 0.5s ease-out;
+    opacity: 1;
+}
+
+.page-content.hide {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* 新内容区域 */
+.new-content {
+    height: 100vh;
+    background-color: #ffffff;
+    position: absolute;
+    top: 100vh;
+    left: 0;
+    width: 100%;
+    transition: transform 0.5s ease-out;
+    z-index: 100;
+    overflow-y: auto;
+}
+
+.new-content.show {
+    transform: translateY(-100vh);
+}
+
+/* 轮播核心样式 */
+.carousel-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 65%;  /* 主要修改点 */
+    height: 65vh;
+    padding: 20px;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.carousel-container {
+    position: relative;
+    height: 100% !important;  /* 继承父级高度 */
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    pointer-events: auto;
+}
+
+/* 轮播轨道和项目 */
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    height: 100%;
+}
+
+.carousel-item {
+    min-width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.carousel-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;  /* 保持完整比例 */
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.carousel-image:hover {
+    transform: scale(1.02);
+}
+
+/* 响应式设计 */
+@media (max-width: 1600px) {
+    .carousel-wrapper {
+        width: 75%;
+        height: 60vh;
+    }
+}
+
+@media (max-width: 1024px) {
+    .carousel-wrapper {
+        width: 85%;
+        height: 50vh;
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-wrapper {
+        width: 90%;
+        height: 40vh;
+        padding: 10px;
+    }
+    
+    .new-content h2 {
+        font-size: 40px;
+        margin-left: 20px;
+    }
+}
+
+/* 放大模态框 */
+.image-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 5px;
+    animation: zoomIn 0.3s;
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* 基础布局 */
+body {
+    min-height: 100vh;
+    position: relative;
+    margin: 0;
+    overflow-x: hidden;
+}
