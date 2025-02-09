@@ -73,6 +73,13 @@ body {
 }
 
 
+@media only screen and (max-width: 768px) {
+  .download-buttons {
+      display: none;
+  }
+}
+
+
 /* 3个图片下载按钮样式 */
 .download-button {
   background-color: rgba(237, 0, 0, 0);
@@ -140,9 +147,6 @@ body {
     transform: translateY(-10px);
   }
 }
-
-
-
 
 
 
